@@ -37,6 +37,7 @@
             v-else
             data-set="login-button"
             text="hello"
+            :is-primary="true"
             @click="loggingUser"
           />
         </div>
