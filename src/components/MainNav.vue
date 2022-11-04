@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full text-sm">
+  <header :class="['w-full', 'text-sm', headerHeightClass]">
     <div class="fixed top-0 left-0 w-full h-16 bg-white">
       <div
         class="flex flex-nowrap h-full px-8 mx-auto border-b border-solid border-brand-gray-1"
@@ -37,11 +37,12 @@
             v-else
             data-set="login-button"
             text="hello"
-            :is-primary="true"
+            type="primary"
             @click="loggingUser"
           />
         </div>
       </div>
+      <subnav-menu v-if="isLogged" />
     </div>
   </header>
 </template>
@@ -49,12 +50,13 @@
 <script>
 import ActionButton from "./ActionButton.vue";
 import ProfileImage from "./ProfileImage.vue";
-
+import SubnavMenu from "./SubnavMenu.vue";
 export default {
   name: "MainNav",
   components: {
     ActionButton,
     ProfileImage,
+    SubnavMenu,
   },
   data() {
     return {
@@ -70,6 +72,14 @@ export default {
         "Jobs",
       ],
     };
+  },
+  computed: {
+    headerHeightClass() {
+      return {
+        "h-16": !this.isLogged,
+        "h-32": this.isLogged,
+      };
+    },
   },
   methods: {
     loggingUser() {
