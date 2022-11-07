@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import ActionButton from "./ActionButton.vue";
+import ActionButton from "../Shared/ActionButton.vue";
 import ProfileImage from "./ProfileImage.vue";
 import SubnavMenu from "./SubnavMenu.vue";
 export default {
