@@ -25,9 +25,8 @@
       <div class="relative flex items-center flex-1 h-full pl-3">
         <label class="absolute left-0 -top-10">Where?</label>
         <text-input
+          v-model="location"
           placeholder="Los Angeles"
-          :value="location"
-          @handle-input="location = $event"
         />
       </div>
     </div>
