@@ -1,7 +1,11 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import HomeView from "@/views/HomeView";
-import JobsResultsView from "@/views/JobsResultsView";
-import JobView from "@/views/JobView";
+// import HomeView from "@/views/HomeView";
+// import JobsResultsView from "@/views/JobsResultsView";
+// import JobView from "@/views/JobView";
+const HomeView = () => import("@/views/HomeView");
+const JobsResultsView = () =>
+  import(/* webpackChunkName:"jobs"*/ "@/views/JobsResultsView");
+const JobView = () => import(/* webpackChunkName:"jobs"*/ "@/views/JobView");
 
 const routes = [
   {
@@ -24,6 +28,9 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  scrollBehavior() {
+    return { top: 0, left: 0, behavior: "smooth" };
+  },
 });
 
 export default router;

@@ -1,6 +1,7 @@
 <template>
   <form
     class="flex items-center w-full h-12 mt-14 border border-solid border-brand-gray-3 rounded-3xl"
+    @submit.prevent="jobsForSearch"
   >
     <font-awesome-icon
       :icon="['fas', 'search']"
@@ -11,9 +12,8 @@
       <div class="relative flex items-center flex-1 h-full pr-3">
         <label class="absolute left-0 -top-10">Role</label>
         <text-input
+          v-model="role"
           placeholder="Search jobs"
-          :value="role"
-          @handle-input="updateRole"
         />
       </div>
 
@@ -56,8 +56,14 @@ export default {
     };
   },
   methods: {
-    updateRole(payload) {
-      this.role = payload;
+    jobsForSearch() {
+      this.$router.push({
+        name: "JobsResults",
+        query: {
+          role: this.role,
+          location: this.location,
+        },
+      });
     },
   },
 };

@@ -1,21 +1,18 @@
 <template>
-  <router-link to="/">goToHome</router-link>
-  <br />
-  <router-link :to="{ name: 'Home' }">goToHome</router-link>
-  <br />
-  <router-link :to="{ path: '/' }">goToHome</router-link>
-  <h1 class="text-6xl font-bold">Job Results View</h1>
-  <button @click="goToHome">goToHome</button>
+  <div class="flex flex-row flex-nowrap w-full">
+    <job-filters-sidebar />
+    <job-listings />
+  </div>
 </template>
 
 <script>
+import JobFiltersSidebar from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebar.vue";
+import JobListings from "@/components/JobResults/JobListings.vue";
 export default {
   name: "JobResultsView",
-  methods: {
-    goToHome() {
-      // this.$router.push({ name: "Home" });
-      this.$router.push({ path: "/" });
-    },
+  components: {
+    JobFiltersSidebar,
+    JobListings,
   },
 };
 </script>
