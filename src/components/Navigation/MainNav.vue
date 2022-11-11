@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import ActionButton from "../Shared/ActionButton.vue";
 import ProfileImage from "./ProfileImage.vue";
 import SubnavMenu from "./SubnavMenu.vue";
@@ -60,7 +61,6 @@ export default {
   },
   data() {
     return {
-      isLogged: false,
       menuItems: [
         { text: "Teams", url: "/" },
         { text: "Locations", url: "/" },
@@ -72,6 +72,9 @@ export default {
     };
   },
   computed: {
+    isLogged() {
+      return this.$store.state.isLogged;
+    },
     headerHeightClass() {
       return {
         "h-16": !this.isLogged,
@@ -81,7 +84,7 @@ export default {
   },
   methods: {
     loggingUser() {
-      this.isLogged = true;
+      this.$store.commit("LOGIN_USER");
     },
   },
 };
