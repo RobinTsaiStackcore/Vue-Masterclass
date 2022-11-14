@@ -38,7 +38,7 @@
             data-set="login-button"
             text="hello"
             type="primary"
-            @click="loggingUser"
+            @click="LOGIN_USER"
           />
         </div>
       </div>
@@ -48,7 +48,8 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
+import { LOGIN_USER } from "@/store";
 import ActionButton from "../Shared/ActionButton.vue";
 import ProfileImage from "./ProfileImage.vue";
 import SubnavMenu from "./SubnavMenu.vue";
@@ -72,9 +73,10 @@ export default {
     };
   },
   computed: {
-    isLogged() {
-      return this.$store.state.isLogged;
-    },
+    // isLogged() {
+    //   return this.$store.state.isLogged;
+    // },
+    ...mapState(["isLogged"]),
     headerHeightClass() {
       return {
         "h-16": !this.isLogged,
@@ -83,9 +85,10 @@ export default {
     },
   },
   methods: {
-    loggingUser() {
-      this.$store.commit("LOGIN_USER");
-    },
+    // loggingUser() {
+    //   this.$store.commit(LOGIN_USER);
+    // },
+    ...mapMutations([LOGIN_USER]),
   },
 };
 </script>

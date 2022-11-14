@@ -50,17 +50,14 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapState, mapActions } from "vuex";
+import { FETCH_JOBS } from "@/store";
+
 import JobListing from "@/components/JobResults/JobListing";
 export default {
   name: "JobListings",
   components: {
     JobListing,
-  },
-  data() {
-    return {
-      jobs: [],
-    };
   },
   computed: {
     // 算出總頁碼跑 v-for
@@ -90,10 +87,14 @@ export default {
       const lastJobIndex = pageNumber * 10;
       return this.jobs.slice(firstJobIndex, lastJobIndex);
     },
+    ...mapState(["jobs"]),
   },
   async mounted() {
-    const response = await axios.get(process.env.VUE_APP_API_URL);
-    this.jobs = response.data;
+    // this.$store.dispatch(FETCH_JOBS);
+    this.FETCH_JOBS();
+  },
+  methods: {
+    ...mapActions([FETCH_JOBS]),
   },
 };
 </script>
